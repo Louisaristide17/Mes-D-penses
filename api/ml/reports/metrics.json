@@ -1,0 +1,347 @@
+{
+  "date": "2026-11-16T20:43:31+00:00",
+  "scikit_learn": "1.9.1",
+  "donnees": {
+    "total": 6761,
+    "entrainement": 5410,
+    "test": 1351,
+    "test_manuel": 120,
+    "par_categorie": {
+      "Alimentation": 696,
+      "Autres": 547,
+      "Communication": 549,
+      "Factures": 544,
+      "Habillement": 904,
+      "Logement": 723,
+      "Loisirs": 694,
+      "Santé": 709,
+      "Transport": 690,
+      "Éducation": 705
+    }
+  },
+  "validation_croisee": {
+    "Naive Bayes, mots": {
+      "exactitude": 0.4373,
+      "f1_macro": 0.4557,
+      "f1_macro_ecart_type": 0.0341
+    },
+    "Régression logistique, mots": {
+      "exactitude": 0.4518,
+      "f1_macro": 0.4678,
+      "f1_macro_ecart_type": 0.0376
+    },
+    "Régression logistique, caractères": {
+      "exactitude": 0.5083,
+      "f1_macro": 0.5171,
+      "f1_macro_ecart_type": 0.0166
+    },
+    "Régression logistique, mots et caractères": {
+      "exactitude": 0.5161,
+      "f1_macro": 0.5243,
+      "f1_macro_ecart_type": 0.0164
+    },
+    "SVM linéaire calibré, caractères": {
+      "exactitude": 0.5098,
+      "f1_macro": 0.5184,
+      "f1_macro_ecart_type": 0.0198
+    }
+  },
+  "modele_retenu": "Régression logistique, mots et caractères",
+  "test_aleatoire": {
+    "exactitude": 0.9845,
+    "f1_macro": 0.9844
+  },
+  "test": {
+    "exactitude": 0.5204,
+    "f1_macro": 0.5382
+  },
+  "test_manuel": {
+    "exactitude": 0.9,
+    "f1_macro": 0.901
+  },
+  "systeme_complet_test_manuel": {
+    "exactitude": 0.9083,
+    "f1_macro": 0.909
+  },
+  "regles": {
+    "test": {
+      "exactitude": 0.2998,
+      "f1_macro": 0.3383
+    },
+    "test_manuel": {
+      "exactitude": 0.5583,
+      "f1_macro": 0.618
+    }
+  },
+  "par_categorie_test_manuel": {
+    "Alimentation": {
+      "precision": 0.7692307692307693,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.8,
+      "support": 12.0
+    },
+    "Autres": {
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1-score": 0.9230769230769231,
+      "support": 12.0
+    },
+    "Communication": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 12.0
+    },
+    "Factures": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 12.0
+    },
+    "Habillement": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1-score": 0.8888888888888888,
+      "support": 12.0
+    },
+    "Logement": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1-score": 0.75,
+      "support": 12.0
+    },
+    "Loisirs": {
+      "precision": 0.9090909090909091,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.8695652173913043,
+      "support": 12.0
+    },
+    "Santé": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 12.0
+    },
+    "Transport": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 12.0
+    },
+    "Éducation": {
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.9090909090909091,
+      "support": 12.0
+    },
+    "accuracy": 0.9,
+    "macro avg": {
+      "precision": 0.9085464535464535,
+      "recall": 0.9,
+      "f1-score": 0.9010187155839329,
+      "support": 120.0
+    },
+    "weighted avg": {
+      "precision": 0.9085464535464536,
+      "recall": 0.9,
+      "f1-score": 0.9010187155839329,
+      "support": 120.0
+    }
+  },
+  "categories": [
+    "Alimentation",
+    "Autres",
+    "Communication",
+    "Factures",
+    "Habillement",
+    "Logement",
+    "Loisirs",
+    "Santé",
+    "Transport",
+    "Éducation"
+  ],
+  "matrice_confusion_test_manuel": [
+    [
+      10,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      11,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      0,
+      9,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      10,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      11,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      11,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      10
+    ]
+  ],
+  "erreurs_test_manuel": [
+    {
+      "libelle": "Bidon d'huile 5 litres",
+      "attendu": "Alimentation",
+      "predit": "Logement"
+    },
+    {
+      "libelle": "Hamburger frites",
+      "attendu": "Alimentation",
+      "predit": "Habillement"
+    },
+    {
+      "libelle": "Réparation du pot d'échappement",
+      "attendu": "Transport",
+      "predit": "Logement"
+    },
+    {
+      "libelle": "Nouveau matelas 2 places",
+      "attendu": "Logement",
+      "predit": "Alimentation"
+    },
+    {
+      "libelle": "Peintre pour le salon",
+      "attendu": "Logement",
+      "predit": "Loisirs"
+    },
+    {
+      "libelle": "Ampoules LED pour la chambre",
+      "attendu": "Logement",
+      "predit": "Alimentation"
+    },
+    {
+      "libelle": "Cotisation CNPS trimestre",
+      "attendu": "Factures",
+      "predit": "Autres"
+    },
+    {
+      "libelle": "Nouvelles lunettes chez l'opticien",
+      "attendu": "Santé",
+      "predit": "Habillement"
+    },
+    {
+      "libelle": "Achat des fournitures de la rentrée",
+      "attendu": "Éducation",
+      "predit": "Logement"
+    },
+    {
+      "libelle": "Cantine du mois pour les enfants",
+      "attendu": "Éducation",
+      "predit": "Autres"
+    },
+    {
+      "libelle": "Soirée au maquis avec les amis",
+      "attendu": "Loisirs",
+      "predit": "Alimentation"
+    },
+    {
+      "libelle": "Soirée karaoké",
+      "attendu": "Loisirs",
+      "predit": "Habillement"
+    }
+  ]
+}
