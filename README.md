@@ -4,6 +4,18 @@ Application de suivi des dépenses personnelles, pensée pour la Côte d'Ivoire 
 
 Projet réalisé pour la soutenance de la formation Développeur Data IA (Simplon Côte d'Ivoire).
 
+## Démonstration en ligne
+
+| Accès | Adresse |
+|---|---|
+| Site web | https://mes-depenses-wbpu.onrender.com |
+| Documentation de l'API | https://mes-d-penses-api.onrender.com/docs |
+| Application Android et application Windows | Rubrique **Releases** de ce dépôt |
+
+Compte de démonstration : `awa.kone@example.com` / `demonstration-2026`. Il contient des dépenses fictives sur quatre mois.
+
+L'API est hébergée sur une offre gratuite qui se met en veille après 15 minutes sans visite. **La première connexion peut donc prendre jusqu'à une minute** ; les suivantes sont immédiates.
+
 ## Architecture
 
 ```
@@ -22,6 +34,13 @@ Projet réalisé pour la soutenance de la formation Développeur Data IA (Simplo
                                 |
                      PostgreSQL (SQLite en local)
 ```
+
+| Composant | Hébergement |
+|---|---|
+| API | Render, service web Python (Francfort) |
+| Site web | Render, site statique |
+| Base de données | Neon, PostgreSQL (Francfort) |
+| Modèle de langage de l'assistant | Groq |
 
 | Dossier | Contenu | Documentation |
 |---|---|---|
@@ -60,7 +79,7 @@ Compte de démonstration : `awa.kone@example.com` / `demonstration-2026`.
 |---|---|---|---|
 | Données | 25 | Constitution d'un jeu de 9 855 libellés à partir de 657 libellés de base ; nettoyage en quatre étapes ; exploration ; modèle relationnel à sept tables avec migrations ; import CSV avec rapport des lignes rejetées | `api/ml/vocabulary.py`, `build_dataset.py`, `prepare.py` ; sections 1 à 3 du notebook ; `api/app/models.py` ; `api/migrations/` |
 | Entraînement de modèle | 25 | Cinq modèles comparés par validation croisée par groupes ; trois mesures d'évaluation ; matrice de confusion ; analyse des erreurs ; choix du seuil de confiance ; réentraînement à partir des corrections | `api/ml/train.py` ; sections 4 à 9 du notebook ; `api/ml/reports/` |
-| Développement web, mobile et desktop | 30 | API REST documentée (OpenAPI), authentification par jetons, 65 tests ; trois clients partageant le même design system ; tableau de bord, budgets avec alertes, exports CSV et PDF | `http://localhost:8000/docs` ; démonstration des trois applications ; `api/tests/` |
+| Développement web, mobile et desktop | 30 | API REST documentée (OpenAPI), authentification par jetons, 81 tests ; trois clients partageant le même design system ; tableau de bord, budgets avec alertes, exports CSV et PDF ; déploiement en ligne | https://mes-d-penses-api.onrender.com/docs ; démonstration des trois applications ; `api/tests/` |
 | Création d'un agent IA | 25 | Agent à cinq outils avec appel de fonctions ; validation des arguments ; cloisonnement par utilisateur ; limite d'allers-retours ; historique des conversations | `api/app/services/agent.py`, `llm.py` ; `api/tests/test_assistant.py` |
 | Intégration de l'IA dans une application | 25 | Catégorie suggérée à la saisie, avec niveau de confiance, dans les trois clients ; onglet Assistant dans les trois clients, avec indication des données utilisées ; enregistrement des corrections pour améliorer le modèle | Formulaire « Nouvelle dépense » ; onglet Assistant ; table `predictions` |
 
@@ -73,4 +92,4 @@ Ce tableau s'appuie sur les intitulés des cinq blocs. Il est à affiner critèr
 - **Réponses générales non vérifiées.** Pour les questions qui ne portent pas sur les données de l'utilisateur, l'assistant répond à partir des connaissances du modèle de langage, sans accès à internet : il peut se tromper ou donner une information dépassée.
 - **Assistant dépendant d'un service externe.** Les réponses sont produites par un modèle hébergé chez Groq : elles demandent une connexion, et les questions ainsi que les chiffres utilisés quittent le serveur.
 - **Fonctions absentes sur mobile et desktop.** L'import CSV et les exports ne sont pas disponibles sur mobile ; les catégories personnelles se gèrent sur le site web.
-- **Déploiement.** Le projet a été testé en local. La procédure de déploiement sur Render est décrite dans `api/README.md` mais n'a pas été exécutée.
+- **Hébergement gratuit.** L'API se met en veille après 15 minutes d'inactivité et met environ une minute à se réveiller. L'APK est signé avec la clé de test de Flutter : il s'installe directement, mais ne peut pas être publié sur le Play Store en l'état.

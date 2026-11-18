@@ -115,12 +115,26 @@ pytest
 
 Les tests utilisent une base SQLite en mémoire, recréée à chaque test.
 
-## Déploiement sur Render
+## Déploiement
 
-1. Créer une base PostgreSQL et un service web Python.
-2. Commande de build : `pip install -r requirements.txt && python -m ml.train` (le modèle est entraîné pendant le build, avec la même version de scikit-learn que celle qui le servira)
-3. Commande de démarrage : `alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-4. Renseigner `DATABASE_URL`, `JWT_SECRET`, `CORS_ORIGINS` et `GROQ_API_KEY` dans les variables d'environnement du service.
+L'API en ligne tourne sur Render, avec une base PostgreSQL hébergée chez Neon.
+
+**Base de données (Neon).** Créer un projet dans la région Francfort, puis copier la chaîne de connexion directe (option « Connection pooling » désactivée, format « Connection string »).
+
+**Service web (Render).**
+
+| Réglage | Valeur |
+|---|---|
+| Root Directory | `api` |
+| Build Command | `pip install -r requirements.txt && python -m ml.train` |
+| Start Command | `alembic upgrade head && python -m scripts.seed_demo && uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| Health Check Path | `/health` |
+
+Le modèle est entraîné pendant la construction, avec la version de scikit-learn qui le servira ensuite.
+
+**Variables d'environnement.** `PYTHON_VERSION` (`3.13.5`), `DATABASE_URL`, `JWT_SECRET`, `GROQ_API_KEY`, `GROQ_MODEL` et `CORS_ORIGINS` (adresse du site web). La configuration tolère les erreurs de copier-coller courantes (espaces, guillemets, commande `psql` devant l'adresse) et, en cas de valeur invalide, affiche un message explicite sans jamais recopier de secret dans les journaux.
+
+**À savoir.** Une variable modifiée n'est prise en compte qu'au déploiement suivant. Si un déploiement échoue, Render continue de servir la version précédente, avec ses anciennes variables.
 
 ## Activer l'assistant
 
