@@ -90,7 +90,7 @@ class ApiClient {
 
   Future<http.Response> _send(String method, String path, {Map<String, String>? query, Object? body}) async {
     // L'assistant enchaîne plusieurs appels au modèle de langage : sa réponse peut prendre plus longtemps.
-    final timeout = Duration(seconds: path.startsWith('/assistant/') ? 60 : 20);
+    final timeout = Duration(seconds: path.startsWith('/assistant/') ? 90 : 75;
     final base = Uri.parse('$baseUrl/api/v1$path');
     final uri = (query == null || query.isEmpty) ? base : base.replace(queryParameters: query);
     final request = http.Request(method, uri);
