@@ -51,8 +51,48 @@ class _Root extends StatelessWidget {
   Widget build(BuildContext context) {
     final session = context.watch<Session>();
     if (session.loading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 2.5)));
+      return const _Splash();
     }
     return session.user == null ? const AuthScreen() : const HomeShell();
+  }
+}
+
+/// Écran affiché pendant l'ouverture de la session. Le serveur peut mettre jusqu'à une minute à se
+/// réveiller : on le dit, pour que l'utilisateur ne croie pas l'application bloquée.
+class _Splash extends StatelessWidget {
+  const _Splash();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(12)),
+                  child: const Icon(Icons.account_balance_wallet_outlined, color: Colors.white, size: 28),
+                ),
+                const SizedBox(height: 24),
+                const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2.5)),
+                const SizedBox(height: 16),
+                const Text('Connexion au serveur', style: AppText.section),
+                const SizedBox(height: 8),
+                Text(
+                  "Après une période d'inactivité, cela peut prendre jusqu'à une minute.",
+                  style: AppText.body.copyWith(color: AppColors.muted),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

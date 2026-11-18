@@ -14,12 +14,22 @@ class Session extends ChangeNotifier {
   User? user;
   bool loading = true;
 
+  /// Rouvre la session enregistrée. Quoi qu'il arrive, l'écran de chargement se termine :
+  /// au pire, l'utilisateur arrive sur l'écran de connexion.
   Future<void> restore() async {
-    await _api.restoreSession();
+    try {
+      await _api.restoreSession();
+    } catch (_) {
+      // Après une réinstallation, Android peut restaurer des jetons chiffrés avec une clé
+      // qui n'existe plus : ils sont illisibles. On les efface et on repart de zéro.
+      try {
+        await _api.clearSession();
+      } catch (_) {}
+    }
     if (_api.hasSession) {
       try {
         user = await _api.profile();
-      } on ApiException {
+      } catch (_) {
         user = null;
       }
     }

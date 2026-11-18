@@ -13,9 +13,9 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-TIMEOUT = 20
+TIMEOUT = 75
 # L'assistant enchaîne plusieurs appels au modèle de langage : sa réponse peut prendre plus longtemps.
-ASSISTANT_TIMEOUT = 60
+ASSISTANT_TIMEOUT = 90
 KEYRING_SERVICE = "mes-depenses"
 KEYRING_USER = "session"
 
