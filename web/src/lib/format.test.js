@@ -57,3 +57,13 @@ describe('formatPercent', () => {
     expect(formatPercent(0.826)).toBe('83 %')
   })
 })
+
+describe('apiRoot', async () => {
+  const { apiRoot } = await import('./api')
+  it('corrige les erreurs de saisie courantes', () => {
+    expect(apiRoot('https://mes-depenses-api.onrender.com/')).toBe('https://mes-depenses-api.onrender.com')
+    expect(apiRoot(' mes-depenses-api.onrender.com ')).toBe('https://mes-depenses-api.onrender.com')
+    expect(apiRoot('https://mes-depenses-api.onrender.com/api/v1')).toBe('https://mes-depenses-api.onrender.com')
+    expect(apiRoot(undefined)).toBe('http://localhost:8000')
+  })
+})

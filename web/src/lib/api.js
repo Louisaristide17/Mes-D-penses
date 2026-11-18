@@ -1,4 +1,10 @@
-const BASE_URL = `${(import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '')}/api/v1`
+// Adresse de l'API, tolérante aux erreurs de saisie courantes : espaces, barre finale, schéma oublié.
+export function apiRoot(value) {
+  const root = (value || 'http://localhost:8000').trim().replace(/\/+$/, '').replace(/\/api\/v1$/, '')
+  return /^https?:\/\//.test(root) ? root : `https://${root}`
+}
+
+const BASE_URL = `${apiRoot(import.meta.env.VITE_API_URL)}/api/v1`
 const STORAGE_KEY = 'mes-depenses.session'
 
 export class ApiError extends Error {
