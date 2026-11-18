@@ -122,7 +122,7 @@ class ApiClient {
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({'refresh_token': refresh}),
           )
-          .timeout(const Duration(seconds: 20));
+          .timeout(const Duration(seconds: 75));
       if (response.statusCode != 200) return false;
       await _saveSession(_decode(response) as Json);
       return true;
